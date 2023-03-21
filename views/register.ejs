@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="icon" type="image/x-icon"
+            href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+  <title>
+    <%=title%>
+  </title>
+</head>
+
+<body>
+  <%- include('headerAll'); %>
+
+    <form method="post">
+      <section class="hero is-dark is-fullheight">
+        <div class="hero-body">
+          <div class="container">
+            <div class="columns is-centered">
+              <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                <div class="box">
+                  <% if (typeof errors !='undefined' ) { %>
+                    <article class="message is-danger is-small">
+                      <% errors.forEach(function (error){ %>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                          <%= error.msg %>
+                        </div>
+                        <% }); %>
+                    </article>
+                    <% } %>
+                      <div class="field has-text-centered" style="font-size: 25px;">
+                        <strong>Register</strong>
+                        <hr>
+                      </div>
+                      <div class="field">
+                        <label for="" class="label">Username</label>
+                        <div class="control has-icons-left">
+                          <input class="input" name="username" type="text" placeholder="Type your username...."
+                            required>
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label for="" class="label">Fullname</label>
+                        <div class="control has-icons-left">
+                          <input class="input" name="name" type="text" placeholder="Type your fullname...."
+                            required>
+                          <span class="icon is-small is-left">
+                            <i class="far fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label for="" class="label">YOB</label>
+                        <div class="control has-icons-left">
+                          <input class="input is-success" name="YOB" type="text" placeholder="Type your Year of birth(dd/mm/yyyy)">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-birthday-cake"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label for="" class="label">Password</label>
+                        <div class="control has-icons-left">
+                          <input class="input is-success" name="password" type="password" required>
+                          <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="field">
+                        <button class="button is-primary">
+                          Register
+                        </button>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+
+</body>
+
+</html>

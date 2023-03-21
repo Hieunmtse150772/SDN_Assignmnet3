@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/881643b674.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+  <title>
+    <%=title%>
+  </title>
+</head>
+
+<body>
+  <%- include('headerAll'); %>
+  
+  <div class="page-body container" style="margin-top: 2rem; max-width:800px">
+    <div class="column">
+      
+      <div class="box">
+        <strong><div class="mb-2" style="color: green;"><%= success_msg %></div></strong>
+            <strong><div class="mb-2" style="color: red;"><%= error_msg %></div></strong>
+        <form method="post">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Name</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-info" name="name" type="text" value="<%=user.name%>" required />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">YOB</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <input class="input is-info" name="YOB" type="text" value="<%=user.YOB%>"
+                   />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label"></label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <button class="button is-info" type="submit">
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

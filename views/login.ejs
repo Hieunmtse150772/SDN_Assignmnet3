@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <title>
+    <%=title %>
+  </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<%- include('headerAll'); %>
+
+<body>
+  <section class="hero is-dark is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+            <strong><div style="color: green;"><%= success_msg %></div></strong>
+            <strong><div style="color: red;"><%= error_msg %></div></strong>
+            <div class="box">
+              <article class="message is-danger is-small mt-0"> 
+                <div id="result" class="alert alert-warning alert-dismissible" role="alert">   
+                </div> 
+              </article>
+              <div class="field has-text-centered" style="font-size: 25px;">
+                <strong>Login</strong>
+                <hr>
+              </div>
+              <div class="field">
+                <label for="" class="label">Username</label>
+                <div class="control has-icons-left">
+                  <input id="username" placeholder="e.g. User name" class="input" type="text" required>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="" class="label">Password</label>
+                <div class="control has-icons-left">
+                  <input id="password" placeholder="******" class="input" type="password" required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+            
+              <div class="field">
+                <button class="button is-primary" onclick="login()">
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+    function setCookie(cname, cvalue, exminute) {
+      const d = new Date();
+      d.setTime(d.getTime() + (exminute * 60 * 1000));
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+
+    // onClick login
+    function login() {
+      $.ajax({
+        url: '/users/login',
+        type: 'POST',
+        data: {
+          username: $('#username').val(),
+          password: $('#password').val()
+
+        }
+      })
+        .then(data => {
+          
+          
+          $('#result').text(data.message);
+
+          if (data.isAdmin === true) {
+            setCookie('token', data.token)
+            setCookie('ckbutton', true)
+            setCookie('ckname', data.name)
+            window.location.href = "/admin"
+          } 
+          if (data.isAdmin === false) {
+            setCookie('token', data.token)
+            setCookie('ckbutton', true)
+            setCookie('ckname', data.name)
+            window.location.href = "/"
+          }
+          
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  </script>
+</body>
+
+</html>

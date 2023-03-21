@@ -1,0 +1,300 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title%>
+  </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/881643b674.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+  <style>
+    :root {
+      --red: #ef233c;
+      --borlywood: #ffcc00;
+      --platinum: #e5e5e5;
+      --black: #2b2d42;
+      --white: #fff;
+      --thumb: #edf2f4;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font: 16px / 24px "Rubik", sans-serif;
+      color: var(--black);
+      background: var(--platinum);
+      margin: 50px 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 1em;
+    }
+
+    .cards {
+      display: flex;
+      padding: 25px 0px;
+      list-style: none;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 100%;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+      scroll-snap-align: start;
+      transition: all 0.2s;
+    }
+
+    .card:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    .cards::-webkit-scrollbar {
+      height: 12px;
+    }
+
+    .cards::-webkit-scrollbar-thumb,
+    .cards::-webkit-scrollbar-track {
+      border-radius: 92px;
+    }
+
+    .cards::-webkit-scrollbar-thumb {
+      background: var(--borlywood);
+    }
+
+    .cards::-webkit-scrollbar-track {
+      background: var(--thumb);
+    }
+
+    @media (min-width: 500px) {
+      .card {
+        flex-basis: calc(50% - 10px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .card {
+        flex-basis: calc(calc(100% / 3) - 20px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .card {
+        flex-basis: calc(25% - 30px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include('headerAll'); %>
+
+    <!-- <section class="section">
+      <div class="container">
+        <h3 class="title has-text-centered is-size-4">List all of Captain</h3>
+        <div class="mt-5 columns is-8 is-variable"
+        style="
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;">
+          <% players.forEach(function(player){ %>
+            <div class="column is-4-tablet is-3-desktop">
+              <div class="card">
+                <div class="card-image has-text-centered px-10">
+                  <a href="/users/detail/<%=player.id%>">
+                    <figure class="image is-5by4">
+                      <img src="<%= player.image %>" />
+                    </figure>
+                  </a>
+                </div>
+                <div class="card-content">
+                  <div class="has-text-centered" style="font-size: larger;">
+                    <a href="/users/detail/<%=player.id%>">
+                      <%= player.name %>
+                    </a>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div>
+                    <strong>Club:</strong> <%= player.club %><br>
+                    <strong>Position:</strong> <%= player.position%><br>
+                    <strong>Goals:</strong> <%= player.goals%><br>
+                    <strong>Role:</strong> <%=JSON.stringify(player.isCaptain)==='true' ? ' Captain' : ' Player' %>
+                  </div>
+                </div>
+                <footer class="card-footer" style="background-color: burlywood;">
+                  <p class="card-footer-item">
+                    <strong>
+                      <%= player.nation.name %>
+                    </strong>
+                  </p>
+                </footer>
+
+              </div>
+            </div>
+            <%})%>
+        </div>
+
+      </div>
+    </section> -->
+
+    <div class="container">
+      <!-- <h3 class="title has-text-centered is-size-4 mt-5">List all of Players</h3> -->
+      <ul class="cards">
+
+        <% players.forEach(function(player){ %>
+          <li class="card">
+            <div class="card-image has-text-centered px-10">
+              <a href="/users/detail/<%=player.id%>">
+                <figure class="image is-5by4">
+                  <img src="<%= player.image %>" />
+                </figure>
+              </a>
+            </div>
+            <div class="card-content">
+              <div class="has-text-centered" style="font-size: 23px;">
+                <a href="/users/detail/<%=player.id%>" style="color: #ffcc00;">
+                  <strong><%= player.name %></strong>
+                </a>
+              </div>
+
+              <hr>
+
+              <div>
+                <div class="has-text-centered mb-2">
+                  <img  src="<%= player.nation.image %>" style="width: 100px; height: 65px;border-style: groove;" />
+                   
+                </div>  
+                <strong>Club:</strong>
+                <%= player.club %><br>
+                  <strong>Position:</strong>
+                  <%= player.position%><br>
+                    <strong>Goals:</strong>
+                    <%= player.goals%><br>
+                      <strong>Role:</strong>
+                      <%=JSON.stringify(player.isCaptain)==='true' ? ' Captain' : ' Player' %>
+                      
+              </div>
+
+              
+            </div>
+            <footer class="card-footer has-background-warning" style="font-size: large;">
+              <p class="card-footer-item">
+                <strong>
+                  <%= player.nation.name %>
+                </strong>
+              </p>
+            </footer>
+
+          </li>
+          <%})%>
+      </ul>
+    </div>
+
+
+
+    <!-- <div class="page-body container mt-5">     
+      
+      <div class="columns">
+        <div class="column">
+          <div class="box">
+            <table class="table" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Nation</th>
+                  <th>Club</th>
+                  <th>Position</th>
+                  <th>Goals</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <% players.forEach(function(player){ %>
+                    <tr>
+                      <td>
+                        <a href="/users/detail/<%=player.id%>">
+                          <figure class="image is-16by9">
+                            <img src="<%= player.image %>" />
+                          </figure>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="/users/detail/<%=player.id%>">
+                          <%= player.name %>
+                        </a>
+                      </td>
+                      <td>
+                        <%= player.nation.name %>
+                      </td>
+                      <td style="width: 200px;">
+                        <%= player.club %>
+                      </td>
+                      <td>
+                        <%= player.position%>
+                      </td>
+                      <td>
+                        <%=player.goals%>
+                      </td>
+                      <td style="width: 100px;">
+                        <%=JSON.stringify(player.isCaptain)==='true' ? 'Captain' : 'Player' %>
+                      </td>                   
+                    </tr>
+                    <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Script -->
+
+    <script>
+      function isExistName(player1, player2) {
+        var _player1 = player1;
+        var _player2 = player2;
+
+        if (_player1 == _player2) {
+          alert('The name of player is exist in list player!')
+        }
+      }
+
+    </script>
+</body>
+
+</html>

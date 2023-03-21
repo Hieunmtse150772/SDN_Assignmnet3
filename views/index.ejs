@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/881643b674.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+  <title>
+    <%=title%>
+  </title>
+
+  <style>
+
+:root {
+  --red: #ef233c;
+  --borlywood: #deb887;
+  --platinum: #e5e5e5;
+  --black: #2b2d42;
+  --white: #fff;
+  --thumb: #edf2f4;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font: 16px / 24px "Rubik", sans-serif;
+  color: var(--black);
+  background: var(--platinum);
+  margin: 50px 0;
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 1em;
+}
+
+.cards {
+  display: flex;
+  padding: 25px 0px;
+  list-style: none;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  scroll-snap-align: start;
+  transition: all 0.2s;
+}
+
+.card:not(:last-child) {
+  margin-right: 10px;
+}
+
+.cards::-webkit-scrollbar {
+  height: 12px;
+}
+
+.cards::-webkit-scrollbar-thumb,
+.cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: var(--borlywood);
+}
+
+.cards::-webkit-scrollbar-track {
+  background: var(--thumb);
+}
+
+@media (min-width: 500px) {
+  .card {
+    flex-basis: calc(50% - 10px);
+  }
+
+  .card:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 700px) {
+  .card {
+    flex-basis: calc(calc(100% / 3) - 20px);
+  }
+
+  .card:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .card {
+    flex-basis: calc(25% - 30px);
+  }
+
+  .card:not(:last-child) {
+    margin-right: 40px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <%- include('headerAll') %>
+
+  <div class="container">
+    <strong>
+      <div style="color: green;">
+        <%= success_msg %>
+      </div>
+    </strong>
+    <strong>
+      <div style="color: red;">
+        <%= error_msg %>
+      </div>
+    </strong>
+    <h3 class="title has-text-centered is-size-4 mt-5">List all of Captain</h3>
+    <ul class="cards">
+      
+        <% players.forEach(function(player){ %>
+          <li class="card">
+              <div class="card-image has-text-centered px-10">
+                <a href="/users/detail/<%=player.id%>">
+                  <figure class="image is-5by4">
+                    <img src="<%= player.image %>" />
+                  </figure>
+                </a>
+              </div>
+              <div class="card-content has-text-centered" style="font-size: larger;">               
+                <div class="column" style="display: flex; align-items: center;">
+                  <img class="mr-3" src="<%= player.nation.image %>" style="width: 100px; height: 65px;border-style: groove;" />
+             
+                  <a href="/users/detail/<%=player.id%>">
+                    <%= player.name %>
+                  </a>
+
+                </div>
+                
+                
+                <% console.log(player.nation.image)%>
+              </div>
+              <footer class="card-footer has-background-warning">
+                <p class="card-footer-item">
+                  <strong>
+                    <%= player.nation.name %>
+                  </strong>
+                </p>
+              </footer>
+
+            </li>
+          <%})%>
+    </ul>
+  </div>
+  
+
+
+    <!-- <section class="section">
+      <div class="container">
+        <h3 class="title has-text-centered is-size-4">List all of Captain</h3>
+        <div class="mt-5 columns is-8 is-variable"
+        style="
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;"
+        >
+          <% players.forEach(function(player){ %>
+            <div class="column is-4-tablet is-3-desktop">
+              <div class="card">
+                <div class="card-image has-text-centered px-10">
+                  <a href="/users/detail/<%=player.id%>">
+                    <figure class="image is-5by4">
+                      <img src="<%= player.image %>" />
+                    </figure>
+                  </a>
+                </div>
+                <div class="card-content has-text-centered" style="font-size: larger;">
+                  <a href="/users/detail/<%=player.id%>">
+                    <%= player.name %>
+                  </a>
+                </div>
+                <footer class="card-footer"  style="background-color: #deb887;">
+                  <p class="card-footer-item">
+                    <strong>
+                      <%= player.nation.name %>
+                    </strong>
+                  </p>
+                </footer>
+
+              </div>
+            </div>
+            <%})%>
+        </div>
+
+      </div>
+    </section> -->
+
+    <!-- <div class="page-body container mt-5">
+
+      <div class="columns">
+        <div class="column">
+          <div class="box">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Nation</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <% players.forEach(function(player){ %>
+                  <tr>
+                    <td>
+                      <a href="/users/detail/<%=player.id%>">
+                        <%= player.name %>
+                      </a>
+                    </td>
+
+                    <td>
+                      <a href="/users/detail/<%=player.id%>">
+
+                        <img src="<%= player.image %>" />
+                        </figure>
+                      </a>
+                    </td>
+
+                    <td style="width: 100px;">
+                      <%= player.nation.name %>
+                    </td>
+
+                  </tr>
+                  <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</body>
+
+</html>

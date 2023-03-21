@@ -1,0 +1,231 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/881643b674.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+  <style>
+    :root {
+      --red: #ef233c;
+      --borlywood: #ffcc00;
+      --platinum: #e5e5e5;
+      --black: #2b2d42;
+      --white: #fff;
+      --thumb: #edf2f4;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font: 16px / 24px "Rubik", sans-serif;
+      color: var(--black);
+      background: var(--platinum);
+      margin: 50px 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 1em;
+    }
+
+    .cards {
+      display: flex;
+      padding: 25px 0px;
+      list-style: none;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 100%;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+      scroll-snap-align: start;
+      transition: all 0.2s;
+    }
+
+    .card:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    .cards::-webkit-scrollbar {
+      height: 12px;
+    }
+
+    .cards::-webkit-scrollbar-thumb,
+    .cards::-webkit-scrollbar-track {
+      border-radius: 92px;
+    }
+
+    .cards::-webkit-scrollbar-thumb {
+      background: var(--borlywood);
+    }
+
+    .cards::-webkit-scrollbar-track {
+      background: var(--thumb);
+    }
+
+    @media (min-width: 500px) {
+      .card {
+        flex-basis: calc(50% - 10px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .card {
+        flex-basis: calc(calc(100% / 3) - 20px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .card {
+        flex-basis: calc(25% - 30px);
+      }
+
+      .card:not(:last-child) {
+        margin-right: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('headerAll'); %>
+
+    <!-- <section class="section">
+      <div class="container">
+        <h3 class="title has-text-centered is-size-4">List all of Nation</h3>
+        <div class="mt-5 columns is-8 is-variable" style="
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;">
+          <% nations.forEach(function(nation){ %>
+            <div class="column is-4-tablet is-3-desktop">
+              <div class="card">
+                <div class="card-image has-text-centered">
+                  <a href="">
+                    <figure class="image is-5by4">
+                      <img src="<%= nation.image%>" />
+                    </figure>
+                  </a>
+                </div>
+                <div class="card-content has-text-centered" style="font-size: larger;">
+                  <a href="">
+                    <%= nation.name %>
+                  </a>
+                </div>
+                <footer class="card-footer" style="background-color: burlywood;">
+                  <p class="card-footer-item">
+                    <strong>
+                      <%= nation.description %>
+                    </strong>
+                  </p>
+                </footer>
+
+              </div>
+            </div>
+            <%})%>
+        </div>
+
+      </div>
+    </section> -->
+
+    <div class="container">
+      <h3 class="title has-text-centered is-size-4 mt-5">List all of Nations</h3>
+      <ul class="cards">
+
+        <% nations.forEach(function(nation){ %>
+          <li class="card">
+
+            <div class="has-text-centered has-background-warning	 py-2" style="font-size: larger;">
+              <strong><a class="has-text-primary" href="">
+                  <%= nation.name %>
+                </a></strong>
+
+            </div>
+            <div class="card-image has-text-centered">
+              <a href="">
+                <figure class="image is-3by2">
+                  <img src="<%= nation.image%>" />
+                </figure>
+              </a>
+            </div>
+            <footer class="card-footer has-background-warning	">
+              <p class="card-footer-item">
+
+
+                <%= nation.description %>
+
+              </p>
+            </footer>
+
+          </li>
+          <%})%>
+      </ul>
+    </div>
+
+    <!--   
+  <div class="page-body container mt-5">
+   
+    <div class="columns">
+      <div class="column">
+        <div class="box">
+          <table class="table" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% nations.forEach(function(nation){ %>
+                <tr>
+                  <td style="width: 20%;">
+                    <a href="">
+                   /  nations/profile/<%=nation.id%> /
+                      <%= nation.name %>
+                    </a>
+                  </td>
+                  <td style="width: 200px;">
+                    <%= nation.description %>
+                  </td>                 
+                </tr>
+                <%})%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+</body>
+
+</html>

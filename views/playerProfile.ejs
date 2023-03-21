@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <title>
+    <%=title%>
+  </title>
+</head>
+
+<body>
+
+  <%- include('headerAdmin'); %>
+
+  <div class="page-body container" style="margin-top: 10px;">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-300x300">
+          <img src="<%=player.image%>" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="<%=player.nation.image%>" alt="Placeholder image" />
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">
+              <%=player.name%>
+            </p>
+          </div>
+        </div>
+
+        <div class="content">
+          <div>
+            <p class="title is-5">Nation:</p>
+            <%=player.nation.name%>
+          </div>
+          <div>
+            <p class="title is-5">Club:</p>
+            <%=player.club%>
+          </div>
+          <div>
+            <p class="title is-5">Position:</p>
+            <%=player.position%>
+          </div>
+          <div>
+            <p class="title is-5">Goals:</p>
+            <%=player.goals%>
+          </div>
+          <div>
+            <p class="title is-5">Role:</p>
+            <%=JSON.stringify(player.isCaptain)==='true' ? 'Captain' : 'Player' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

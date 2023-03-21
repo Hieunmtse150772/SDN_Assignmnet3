@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+  <script src="https://kit.fontawesome.com/881643b674.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7FUwmYvpIogouP6AK5OYIsvfGDW-l_VsfWK2BXv24wb3vnQy6RrDuYbIleqmXe1OGLA&usqp=CAU">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+  <div class="page-header">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/admin">
+          <img src="https://www.fifplay.com/img/public/efootball-logo-horizontal.png" width="112" height="28" />
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/admin"> Dashboard </a>
+          <a class="navbar-item" href="/admin/players"> Players </a>
+          <a class="navbar-item" href="/admin/nations"> Nations </a>
+          <a class="navbar-item" href="/accounts"> Accounts </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> More </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item"> About </a>
+              <a class="navbar-item"> Jobs </a>
+              <a class="navbar-item"> Contact </a>
+              <hr class="navbar-divider" />
+              <a class="navbar-item"> Report an issue </a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <% if(button){ %>
+              <div class="mr-3">Welcome, <%=name%>
+              </div>
+              <% } %>
+                <div class="buttons">
+
+                  <% if(button){ %>
+                    <a href="/users/logout" class="button is-light">
+                      <label><i class="fas fa-sign-out-alt mr-1"></i></label>
+                      <strong>Log out</strong>
+                    </a>
+
+
+                    <% } else { %>
+                      <a class="button is-primary" href="/users/regist">
+                        <strong>Sign up</strong>
+                      </a>
+                      <a class="button is-light" href="/users/login">
+                        <label><i class="fas fa-sign-in-alt mr-1"></i></label>
+                        <strong>Log in </strong>
+                      </a>
+                      <%}%>
+
+                </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+
+</html>
